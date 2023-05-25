@@ -1,5 +1,6 @@
 package jpa.mappings.model;
 
+import jpa.mappings.model.Course;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,13 +16,12 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String name;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "student_course",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
     private List<Course> courses = new ArrayList<>();
 }
-

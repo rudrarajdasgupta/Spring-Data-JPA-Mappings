@@ -18,6 +18,6 @@ public class Course {
 
     private String name;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
     private List<Student> students = new ArrayList<>();
 }

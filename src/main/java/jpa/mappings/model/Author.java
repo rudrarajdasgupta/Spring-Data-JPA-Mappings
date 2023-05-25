@@ -1,5 +1,6 @@
 package jpa.mappings.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ public class Author {
     
     private String name;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "author")
     private Book book;
 }

@@ -1,39 +1,25 @@
 package jpa.mappings.service;
 
+import exceptions.ResourceNotFoundException;
 import jpa.mappings.model.Employee;
 import jpa.mappings.repo.EmployeeRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@AllArgsConstructor
-public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
+import java.util.List;
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
-    }
+public interface EmployeeService {
+    List<Employee> getAllEmployees();
 
-    public Employee getEmployeeById(Long id) {
-        return employeeRepository.findById(id).orElse(null);
-    }
+    Employee getEmployeeById(Long id);
 
-    public Employee createEmployee(Employee employee) {
-        return employeeRepository.save(employee);
-    }
+    Employee createEmployee(Employee employee);
 
-    public Employee updateEmployee(Long id, Employee employee) {
-        Employee existingEmployee = employeeRepository.findById(id).orElse(null);
-        if (existingEmployee != null) {
-            existingEmployee.setName(employee.getName());
-            return employeeRepository.save(existingEmployee);
-        }
-        return null;
-    }
+    Employee updateEmployee(Long id, Employee employee);
 
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
-    }
+    void deleteEmployee(Long id);
 }
+
